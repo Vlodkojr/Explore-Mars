@@ -1,6 +1,9 @@
+import SelectSections from './components/selectSections';
+
 function App() {
   return (
-    <div className="App">        
+    <div>
+      <SelectSections />      
     </div>
   );
 }
