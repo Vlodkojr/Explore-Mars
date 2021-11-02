@@ -39,7 +39,6 @@ export default function SelectSections() {
     }
     if (showPhotos) {
       setIsLoading(true);
-      console.log(api);
       try {
         fetch(api)
           .then(response => {
