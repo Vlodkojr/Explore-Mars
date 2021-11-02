@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
-  },  
+  },
   selectOptions: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -17,7 +17,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   wrapper: {
-    margin: '1% 2%',   
+    margin: '1% 2%',
   },
   selectWrapper: {
     display: 'flex',
@@ -36,7 +36,7 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     fontSize: '30px',
     fontFamily: 'Helvetica',
-  },  
+  },
   footerParagraph: {
     color: 'white',
     fontSize: '1em',
@@ -70,12 +70,12 @@ export const useStyles = makeStyles((theme) => ({
     },
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    backgroundAttachment: 'fixed',   
+    backgroundAttachment: 'fixed',
   },
   loader: {
     display: 'flex',
-    justifyContent: 'center',   
-    marginTop: '40px', 
+    justifyContent: 'center',
+    marginTop: '40px',
   },
   container: {
     display: 'grid',
@@ -90,10 +90,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   imageList: {
     width: '100%',
-     padding: 0,
-     [theme.breakpoints.values.sm]: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-  }
+    padding: 0 
+  }  
 }));

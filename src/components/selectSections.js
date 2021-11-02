@@ -68,7 +68,6 @@ export default function SelectSections() {
   }
 
   const indexOfLastPhoto = currentPage * photosPerPage;
-  const indexOfFirstPhoto = indexOfLastPhoto - photosPerPage;
   const currentImages = photoMars.slice(0, indexOfLastPhoto);
 
   const paginate = () => setCurrentPage(currentPage + 1);

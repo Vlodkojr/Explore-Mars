@@ -9,7 +9,7 @@ const Images = ({ currentImages }) => {
   const classes = useStyles(theme);
 
   let columns;
-  let rows = document.body.clientWidth >= 1024 ? 3 : 2;
+  let rows = document.body.clientWidth >= 350 ? 3 : 2;
   if(document.body.clientWidth <= 1024){
     columns=1;
   } else if(document.body.clientWidth >= 1024 && document.body.clientWidth < 1500){
