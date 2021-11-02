@@ -22,7 +22,7 @@ const Images = ({ currentImages }) => {
     <div className={classes.root}>
       <ImageList className={classes.imageList} cols={columns}>
         {currentImages.map((photo) => (
-          <ImageListItem className={classes.image} cols={1} rows={rows} key={photo.id}>
+          <ImageListItem cols={1} rows={rows} key={photo.id}>
             <img alt="Mars" src={photo.img_src}></img>
           </ImageListItem>
         ))}
