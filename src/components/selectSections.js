@@ -5,7 +5,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { useTheme } from '@material-ui/core'
+import { useTheme } from '@material-ui/core';
 import Images from './images';
 import Pagination from './pagination';
 import Loader from './loader';
@@ -13,7 +13,7 @@ import { useStyles } from './style';
 
 export default function SelectSections() {
   const theme = useTheme();
-  const classes = useStyles(theme);  
+  const classes = useStyles(theme);
   const [isLoading, setIsLoading] = useState(false);
   const [rover, setRover] = useState('');
   const [sol, setSol] = useState('');
@@ -23,6 +23,7 @@ export default function SelectSections() {
   const [currentPage, setCurrentPage] = useState(1);
   const [photosPerPage] = useState(10);
   const [photoMars, setPhotoMars] = useState([]);
+  const [noPhotos, setNoPhotos] = useState(false);
 
   const api_key = process.env.REACT_APP_NASA_KEY;
 
@@ -30,21 +31,25 @@ export default function SelectSections() {
 
   useEffect(() => {
     if (!sol) {
-      setSelectAll(false)
+      setSelectAll(false);
     }
 
     if (rover && sol && camera) {
       setSelectAll(true);
-      setCurrentPage(1)
+      setCurrentPage(1);
     }
     if (showPhotos) {
+      setNoPhotos(false);
       setIsLoading(true);
       try {
         fetch(api)
           .then(response => {
-            return response.json()
+            return response.json();
           })
           .then(data => {
+            if (!data.photos.length) {
+              setNoPhotos(true);
+            }
             setPhotoMars(data.photos);
             setShowPhotos(false);
             setIsLoading(false);
@@ -83,6 +88,12 @@ export default function SelectSections() {
       </div>)
     } else if (isLoading) {
       return <Loader />
+    } else if (noPhotos) {
+      return (
+        <div>
+          <p className={classes.noPhoto}>There are no photos for these options</p>
+        </div>
+      )
     }
   }
 

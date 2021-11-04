@@ -90,6 +90,13 @@ export const useStyles = makeStyles((theme) => ({
   },
   imageList: {
     width: '100%',
-    padding: 0 
-  }  
+    padding: 0
+  },
+  noPhoto: {
+    display: 'flex',
+    justifyContent: 'center',
+    fontSize: '1.5em',
+    color: 'rgb(211, 195, 106)',
+    fontWeight: 'bold'
+  }
 }));
