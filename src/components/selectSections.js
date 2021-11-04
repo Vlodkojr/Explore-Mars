@@ -10,6 +10,7 @@ import Images from './images';
 import Pagination from './pagination';
 import Loader from './loader';
 import { useStyles } from './style';
+import CamerasFilter from './cameras';
 
 export default function SelectSections() {
   const theme = useTheme();
@@ -30,7 +31,7 @@ export default function SelectSections() {
   const api = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}camera=${camera}&api_key=${api_key}`;
 
   useEffect(() => {
-    if (!sol) {
+    if (!sol || !camera) {
       setSelectAll(false);
     }
 
@@ -63,12 +64,15 @@ export default function SelectSections() {
 
   const handleChangeRover = (event) => {
     setRover(event.target.value);
+    setPhotoMars([]);
   };
   const handleChangeSol = (event) => {
     setSol(event.target.value);
+    setPhotoMars([]);
   }
   const handleChangeCamera = (event) => {
     setCamera(event.target.value);
+    setPhotoMars([]);
   }
 
   const indexOfLastPhoto = currentPage * photosPerPage;
@@ -97,6 +101,16 @@ export default function SelectSections() {
     }
   }
 
+  if (rover === "opportunity" || rover === 'spirit') {
+    if (camera === "mast" || camera === "chemcam" || camera === "mahli" || camera === "mardi") {
+      setCamera('');
+    }
+  } else {
+    if (camera === "pancam" || camera === "minites") {
+      setCamera('');
+    }
+  }
+
   return (
     <div className={classes.general}>
       <main className={classes.wrapper}>
@@ -118,23 +132,11 @@ export default function SelectSections() {
             </FormControl>
             <FormControl variant="outlined" className={classes.formControl}>
               <InputLabel variant='outlined'>Camera</InputLabel>
-              <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                value={camera}
-                onChange={handleChangeCamera}
-                label="Camera"
-              >
-                <MenuItem value="fhaz">Front Hazard Avoidance Camera</MenuItem>
-                <MenuItem value="rhaz">Rear Hazard Avoidance Camera</MenuItem>
-                <MenuItem value="mast">Mast Camera</MenuItem>
-                <MenuItem value="chemcam">Chemistry and Camera Complex</MenuItem>
-                <MenuItem value="mahli">Mars Hand Lens Imager</MenuItem>
-                <MenuItem value="mardi">Mars Descent Imager</MenuItem>
-                <MenuItem value="navcam">Navigation Camera</MenuItem>
-                <MenuItem value="pancam">Panoramic Camera</MenuItem>
-                <MenuItem value="minites">Miniature Thermal Emission Spectrometer (Mini-TES)</MenuItem>
-              </Select>
+              <CamerasFilter
+                rover={rover}
+                camera={camera}
+                handleChangeCamera={handleChangeCamera}
+              />
             </FormControl>
             <TextField
               id="outlined-number"
