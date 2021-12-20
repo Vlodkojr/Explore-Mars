@@ -1,32 +1,21 @@
 import React from 'react';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
 import { useTheme } from "@material-ui/core/styles";
 import { useStyles } from './style';
+import Grid from '@material-ui/core/Grid';
 
 const Images = ({ currentImages }) => {
   const theme = useTheme();
-  const classes = useStyles(theme);
-
-  let columns;
-  let rows = document.body.clientWidth >= 350 ? 3 : 2;
-  if(document.body.clientWidth <= 1024){
-    columns=1;
-  } else if(document.body.clientWidth >= 1024 && document.body.clientWidth < 1500){
-     columns=2;
-  } else {
-    columns=3;
-  } 
+  const classes = useStyles(theme); 
 
   return (
     <div className={classes.root}>
-      <ImageList className={classes.imageList} cols={columns}>
+      <Grid container className={classes.imageList} columns={{ xs: 12, sm: 12, md: 12 }}>
         {currentImages.map((photo) => (
-          <ImageListItem cols={1} rows={rows} key={photo.id}>
-            <img alt="Mars" src={photo.img_src}></img>
-          </ImageListItem>
+          <Grid item className={classes.imageGrid} xs={12} sm={12} md={6} xl={4} key={photo.id}>
+            <img className={classes.img} alt="Mars" src={photo.img_src}></img>
+          </Grid>
         ))}
-      </ImageList>
+      </Grid>
     </div>
   );
 }

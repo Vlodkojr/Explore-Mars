@@ -85,12 +85,20 @@ export const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    backgroundColor: theme.palette.background.paper,
+    justifyContent: 'space-around'    
   },
   imageList: {
     width: '100%',
     padding: 0
+  },
+  imageGrid: {
+    padding: theme.spacing(2),
+    lignItems: 'center',
+    backgroundColor: 'transparent',
+    boxShadow: 'none'
+  },
+  img: {
+    width: '100%'
   },
   noPhoto: {
     display: 'flex',
